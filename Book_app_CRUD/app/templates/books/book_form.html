@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Form</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+  <div class="page-card">
+    <h1>{% if form.instance.pk %}Edit Book{% else %}Add New Book{% endif %}</h1>
+
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button type="submit" class="btn">Save</button>
+        <a href="{% url 'book_list' %}" class="btn btn-ghost">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

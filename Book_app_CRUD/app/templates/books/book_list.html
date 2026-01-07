@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+  <div class="page-card">
+    <div class="book-list-header">
+      <h1>All Books</h1>
+      <a href="{% url 'book_create' %}" class="btn">Create New</a>
+    </div>
+
+    <ul class="book-list">
+      {% for book in books %}
+        <li class="book-item">
+          <div class="book-title">{{ book.title }}</div>
+          <div class="book-meta">by {{ book.author }} · ${{ book.price }}</div>
+          <div class="book-actions">
+            <a href="{% url 'book_update' book.pk %}">Edit</a>
+            <a href="{% url 'book_delete' book.pk %}">Delete</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
